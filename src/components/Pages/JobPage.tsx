@@ -1,5 +1,8 @@
+import JobCard from "../Card/JobCard"
 export default function JobPage() {
   return (
-    <div>JobPage</div>
+    <div>
+        <JobCard/>
+    </div>
   )
 }
