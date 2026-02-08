@@ -1,7 +1,22 @@
 import { BsApple, BsTwitterX } from "react-icons/bs";
 import { FaFacebook, FaGoogle, FaInstagram, FaReddit } from "react-icons/fa";
+import type { IconType } from "react-icons"; // type for icon components
 
-export const JobData = [
+// Define TypeScript type for a Job
+export interface Job {
+  id: number;
+  jobTitle: string;
+  companyName: string;
+  jobDescription: string;
+  requiredSkills: string[];
+  bgColor: string;
+  logo: IconType; // react-icons component
+  lastDate: string;
+  salary: string;
+}
+
+// Now type the array
+export const JobData: Job[] = [
   {
     id: 1,
     jobTitle: "Frontend Developer",
@@ -12,7 +27,7 @@ export const JobData = [
     bgColor: "#E0F2FE",
     logo: FaGoogle,
     lastDate: "21 Feb, 2026",
-    salary: "NPR 25,000"
+    salary: "NPR 25,000",
   },
   {
     id: 2,
@@ -24,7 +39,7 @@ export const JobData = [
     bgColor: "#ECFDF5",
     logo: FaInstagram,
     lastDate: "21 Feb, 2026",
-    salary: "NPR 40,000"
+    salary: "NPR 40,000",
   },
   {
     id: 3,
@@ -36,7 +51,7 @@ export const JobData = [
     bgColor: "#FFF7ED",
     logo: BsTwitterX,
     lastDate: "21 Feb, 2026",
-    salary: "NPR 80,000/-"
+    salary: "NPR 80,000/-",
   },
   {
     id: 4,
@@ -48,7 +63,7 @@ export const JobData = [
     bgColor: "#FDF2F8",
     logo: FaFacebook,
     lastDate: "21 Feb, 2026",
-    salary: "NPR 42,000"
+    salary: "NPR 42,000",
   },
   {
     id: 5,
@@ -60,7 +75,7 @@ export const JobData = [
     bgColor: "#EEF2FF",
     logo: BsApple,
     lastDate: "21 Feb, 2026",
-    salary: "NPR 24,000"
+    salary: "NPR 24,000",
   },
   {
     id: 6,
@@ -72,6 +87,6 @@ export const JobData = [
     bgColor: "#F0FDF4",
     logo: FaReddit,
     lastDate: "21 Feb, 2026",
-    salary: "NPR 60,000"
-  }
+    salary: "NPR 60,000",
+  },
 ];
