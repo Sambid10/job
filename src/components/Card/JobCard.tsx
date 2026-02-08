@@ -1,11 +1,17 @@
+import { useState } from "react"
 import { JobData } from "../../constants/JobData"
 import Button from "../Button"
+import { AnimatePresence, motion } from "motion/react"
 export default function JobCard() {
+    const [hoveredId, setHoveredId] = useState<number | null>(null)
     return (
-        <div className="grid xs:grid-cols-1 grid-cols-2 lg:grid-cols-3 gap-4">
+        <div
+            className="grid xs:grid-cols-1 grid-cols-2 lg:grid-cols-3 gap-4">
             {JobData.map((job, index) =>
                 <div
-                    key={index} className={`border border-gray-600 rounded-md shadow-sm p-4 bg-white h-100 w-full`}>
+                    onMouseEnter={() => setHoveredId(index)}
+                    onMouseLeave={() => setHoveredId(null)}
+                    key={index} className={`border relative cursor-pointer border-gray-600 rounded-md shadow-sm p-4 bg-white h-100 w-full`}>
                     <div
                         style={{
                             backgroundColor: `${job.bgColor}`
@@ -28,7 +34,7 @@ export default function JobCard() {
                                 ))}
                             </div>
 
-                            {/* logo */}
+                            {/* job ko logo */}
                             <div className="absolute -top-2 right-0">
                                 <job.logo className="size-8" />
                             </div>
@@ -37,11 +43,24 @@ export default function JobCard() {
                     </div>
                     <div className="h-[20%] w-full flex justify-between items-center p-4 font-semibold text-[17px]">
                         <h1>{job.salary}</h1>
-                        <Button title={"Apply"}/>
+                        <Button title={"Details"} />
                     </div>
-
+                    <AnimatePresence>
+                        {hoveredId === index && (
+                            <motion.div
+                                key="overlay"
+                                initial={{ opacity: 0, scale: 0.7 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.7 }}
+                                transition={{ duration: 0.2, ease: "easeIn" }}
+                                className="absolute inset-0 bg-stone-500/10 rounded-md pointer-events-none"
+                            />
+                        )}
+                    </AnimatePresence>
                 </div>
+
             )}
+
         </div>
     )
 }
