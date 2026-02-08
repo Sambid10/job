@@ -3,7 +3,9 @@ import JobPage from './components/Pages/JobPage'
 
 function App() {
   return (
-      <JobPage/>
+    <>
+      <JobPage />
+    </>
   )
 }
 
