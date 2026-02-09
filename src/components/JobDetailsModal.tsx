@@ -1,6 +1,6 @@
 import type { JobDataType } from "../constants/JobData"
 import Button from "./Button"
-import { BiCalendarExclamation } from "react-icons/bi"
+import { BiCalendarExclamation, BiX } from "react-icons/bi"
 
 export default function JobDetailsModal({ job }: {
   job: JobDataType
@@ -50,15 +50,19 @@ export default function JobDetailsModal({ job }: {
             )}</div>
         </div>
         <div className="w-full bg-gray-600 h-px" />
-        <div className="flex items-center gap-2">
-          <h1 className="text-[17px] font-semibold">Expected Salary:</h1>
-          <h1
-
-            className="text-[17px] font-semibold">{job.salary}/-</h1>
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <h1 className="text-[17px] font-semibold">Expected Salary:</h1>
+            <h1
+              className="text-[17px] font-semibold">{job.salary}/-</h1>
+          </div>
+          <div>
+            <Button title="Apply" />
+          </div>
         </div>
 
         <div className="absolute top-6 right-4">
-          <Button title="Apply" />
+          <button className="border border-gray-600 cursor-pointer rounded-full"><BiX className="size-6"/></button>
         </div>
       </div>
 
