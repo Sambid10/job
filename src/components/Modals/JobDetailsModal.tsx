@@ -22,7 +22,7 @@ export default function JobDetailsModal({ job, setSelectedJob, handleshowToast }
         ref={modalRef}
         className="relative bg-gray-50 rounded-md h-fit w-[90%] lg:w-[50%] p-6 flex flex-col gap-5">
 
-        <div className="flex items-center gap-4">
+        <div className="flex  items-start flex-col gap-2 md:tems-center md:flex-row md:gap-4">
           <h1 className="font-semibold text-xl underline underline-offset-6 decoration-gray-400 decoration-1">&bull; {job.jobTitle}</h1>
 
           <h1 className="flex items-center gap-1"><BiCalendarExclamation /> ({job.lastDate})</h1>
@@ -62,16 +62,17 @@ export default function JobDetailsModal({ job, setSelectedJob, handleshowToast }
 
         <div>
           <h1 className="text-[17px] font-medium">Skills:</h1>
-          <div>
-            <ol className="list-disc pl-4 gap-8 mt-1 flex flex-wrap text-gray-800">
-              {job.requiredSkills.map((skill, index) =>
-                <li key={index} className="text-[15px]">{skill}</li>
-              )}
-            </ol></div>
+            <div>
+              <ol className="list-disc pl-4 mt-1 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-y-px text-gray-800">
+                {job.requiredSkills.map((skill, index) => (
+                  <li key={index} className="text-[15px]">{skill}</li>
+                ))}
+              </ol>
+          </div>
         </div>
         <div className="w-full bg-gray-600 h-px" />
         <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-col md:flex-row items-start md:items-center md:gap-2">
             <h1 className="text-[17px] font-semibold">Expected Salary:</h1>
             <h1
               className="text-[17px] font-semibold">{job.salary}/-</h1>
