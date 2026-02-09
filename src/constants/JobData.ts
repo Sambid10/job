@@ -13,7 +13,8 @@ export type JobDataType = {
   lastDate: string;
   salary: string;
   address: string; 
-  responsibilities:string[]
+  responsibilities:string[];
+  jobType:"Full-time" | "Remote" | "Internship"
 };
 
 export const JobData: JobDataType[] = [
@@ -35,6 +36,7 @@ export const JobData: JobDataType[] = [
     lastDate: "21 Feb, 2026",
     salary: "NPR 25,000",
     address: "Kathmandu, Nepal",
+    jobType: "Full-time",
   },
   {
     id: 2,
@@ -54,6 +56,7 @@ export const JobData: JobDataType[] = [
     lastDate: "12 Feb, 2026",
     salary: "NPR 40,000",
     address: "Lalitpur, Nepal",
+    jobType: "Remote",
   },
   {
     id: 3,
@@ -73,6 +76,7 @@ export const JobData: JobDataType[] = [
     lastDate: "17 Feb, 2026",
     salary: "NPR 80,000/-",
     address: "Bhaktapur, Nepal",
+    jobType: "Full-time",
   },
   {
     id: 4,
@@ -92,6 +96,7 @@ export const JobData: JobDataType[] = [
     lastDate: "26 Feb, 2026",
     salary: "NPR 42,000",
     address: "Pokhara, Nepal",
+    jobType: "Internship",
   },
   {
     id: 5,
@@ -111,6 +116,7 @@ export const JobData: JobDataType[] = [
     lastDate: "28 Feb, 2026",
     salary: "NPR 24,000",
     address: "Biratnagar, Nepal",
+    jobType: "Remote",
   },
   {
     id: 6,
@@ -130,5 +136,6 @@ export const JobData: JobDataType[] = [
     lastDate: "11 Feb, 2026",
     salary: "NPR 60,000",
     address: "Butwal, Nepal",
+    jobType: "Internship",
   },
 ];

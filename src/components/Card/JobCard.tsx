@@ -29,7 +29,7 @@ export default function JobCard({handleshowToast}:Props) {
                         <div className="relative">
                             <h1 className="text-lg font-semibold">{job.companyName}</h1>
                             <h1 className="text-3xl font-semibold">{job.jobTitle}</h1>
-
+                            <h1>({job.jobType})</h1>
                             <div className="flex flex-wrap gap-2 mt-4">
                                 {job.requiredSkills.map((skill, index) => (
                                     <div

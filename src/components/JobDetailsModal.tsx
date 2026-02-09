@@ -23,6 +23,7 @@ export default function JobDetailsModal({ job, setSelectedJob,handleshowToast }:
 
         <div className="flex items-center gap-4">
           <h1 className="font-semibold text-xl underline underline-offset-6 decoration-gray-400 decoration-1">&bull; {job.jobTitle}</h1>
+          
           <h1 className="flex items-center gap-1"><BiCalendarExclamation /> ({job.lastDate})</h1>
         </div>
 
@@ -37,7 +38,11 @@ export default function JobDetailsModal({ job, setSelectedJob,handleshowToast }:
         <div className="w-full bg-gray-600 h-px" />
 
         <div>
-          <h1 className="text-[17px] font-medium">Job Description:</h1>
+          <div className="flex items-center gap-1">
+              <h1 className="text-[17px] font-medium">Job Description:</h1>
+          <h1>({job.jobType})</h1>
+          </div>
+        
           <p
             style={{ lineHeight: "120%" }}
             className="mt-1  text-gray-800 text-[15px]">{job.jobDescription}</p>
