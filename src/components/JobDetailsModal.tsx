@@ -2,22 +2,26 @@ import type { JobDataType } from "../constants/JobData"
 import Button from "./Button"
 import { BiCalendarExclamation, BiX } from "react-icons/bi"
 import useOutsideClick from "../hooks/useOutsideClick"
-import { useRef } from "react"
-export default function JobDetailsModal({ job,setSelectedJob }: {
+import { useRef, useState } from "react"
+import ToastNotification from "./ToastNotification"
+import { AnimatePresence } from "motion/react"
+export default function JobDetailsModal({ job, setSelectedJob }: {
   job: JobDataType
-  setSelectedJob:(index:number | null)=>void
+  setSelectedJob: (index: number | null) => void
 }) {
-  const handleCloseModal =() => {
-    setSelectedJob(null )
+  const handleCloseModal = () => {
+    setSelectedJob(null)
   }
-  const modalRef=useRef(null)
-  const buttonRef=useRef(null)
-  useOutsideClick({ref:modalRef,handler:handleCloseModal,buttonRef:buttonRef})
+  const modalRef = useRef(null)
+  const buttonRef = useRef(null)
+  const [showToast, setShowToast] = useState(false)
+  useOutsideClick({ ref: modalRef, handler: handleCloseModal, buttonRef: buttonRef })
+ 
   return (
     <div className="fixed inset-0 w-full bg-black/60 z-50 flex items-center justify-center cursor-default">
-      <div 
-      ref={modalRef}
-      className="relative bg-gray-50 rounded-md h-fit w-[90%] lg:w-[50%] p-6 flex flex-col gap-5">
+      <div
+        ref={modalRef}
+        className="relative bg-gray-50 rounded-md h-fit w-[90%] lg:w-[50%] p-6 flex flex-col gap-5">
 
         <div className="flex items-center gap-4">
           <h1 className="font-semibold text-xl underline underline-offset-6 decoration-gray-400 decoration-1">&bull; {job.jobTitle}</h1>
@@ -67,16 +71,21 @@ export default function JobDetailsModal({ job,setSelectedJob }: {
               className="text-[17px] font-semibold">{job.salary}/-</h1>
           </div>
           <div>
-            <Button className="bg-blue-600 hover:bg-blue-500 border border-blue-700" title="Apply" />
+            <Button
+              handleClick={handleshowToast}
+              className="bg-blue-600 hover:bg-blue-500 border border-blue-700" title="Apply" />
           </div>
         </div>
 
         <div className="absolute top-6 right-4">
-          <button 
-          ref={buttonRef}
-          className="border border-gray-600 cursor-pointer rounded-full"><BiX className="size-8" /></button>
+          <button
+            ref={buttonRef}
+            className="border border-gray-600 cursor-pointer rounded-full"><BiX className="size-8" /></button>
         </div>
       </div>
+      <AnimatePresence>
+        {showToast && <ToastNotification />}
+      </AnimatePresence>
 
     </div>
   )
