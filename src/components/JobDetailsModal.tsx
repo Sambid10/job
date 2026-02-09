@@ -67,7 +67,7 @@ export default function JobDetailsModal({ job,setSelectedJob }: {
               className="text-[17px] font-semibold">{job.salary}/-</h1>
           </div>
           <div>
-            <Button title="Apply" />
+            <Button className="bg-blue-600 hover:bg-blue-500 border border-blue-700" title="Apply" />
           </div>
         </div>
 
