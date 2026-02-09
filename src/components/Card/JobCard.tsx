@@ -2,7 +2,7 @@ import { useState } from "react"
 import { JobData } from "../../constants/JobData"
 import Button from "../Button"
 import { AnimatePresence, motion } from "motion/react"
-import JobDetailsPage from "../JobDetailsPage"
+import JobDetailsModal from "../JobDetailsModal"
 export default function JobCard() {
     const [hoveredId, setHoveredId] = useState<number | null>(null)
     const [selectedJob, setSelectedJob] = useState<number | null>(null);
@@ -37,7 +37,6 @@ export default function JobCard() {
                                 ))}
                             </div>
 
-                            {/* job ko logo */}
                             <div className="absolute -top-2 right-0">
                                 <job.logo className="size-8" />
                             </div>
@@ -60,15 +59,15 @@ export default function JobCard() {
                             />
                         )}
                     </AnimatePresence>
-
+                    <AnimatePresence>
+                        {selectedJob === index &&
+                            <JobDetailsModal job={job} />
+                        }
+                    </AnimatePresence>
                 </div>
 
             )}
-            <AnimatePresence>
-                {selectedJob !== null &&
-                    <JobDetailsPage />
-                }
-            </AnimatePresence>
+
         </div>
     )
 }
