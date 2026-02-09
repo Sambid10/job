@@ -2,19 +2,17 @@ import type { JobDataType } from "../constants/JobData"
 import Button from "./Button"
 import { BiCalendarExclamation, BiX } from "react-icons/bi"
 import useOutsideClick from "../hooks/useOutsideClick"
-import { useRef, useState } from "react"
-import ToastNotification from "./ToastNotification"
-import { AnimatePresence } from "motion/react"
-export default function JobDetailsModal({ job, setSelectedJob }: {
+import { useRef } from "react"
+export default function JobDetailsModal({ job, setSelectedJob,handleshowToast }: {
   job: JobDataType
   setSelectedJob: (index: number | null) => void
+  handleshowToast:()=>void
 }) {
   const handleCloseModal = () => {
     setSelectedJob(null)
   }
   const modalRef = useRef(null)
   const buttonRef = useRef(null)
-  const [showToast, setShowToast] = useState(false)
   useOutsideClick({ ref: modalRef, handler: handleCloseModal, buttonRef: buttonRef })
  
   return (
@@ -72,7 +70,7 @@ export default function JobDetailsModal({ job, setSelectedJob }: {
           </div>
           <div>
             <Button
-              handleClick={handleshowToast}
+              handleClick={()=>handleshowToast()}
               className="bg-blue-600 hover:bg-blue-500 border border-blue-700" title="Apply" />
           </div>
         </div>
@@ -83,10 +81,7 @@ export default function JobDetailsModal({ job, setSelectedJob }: {
             className="border border-gray-600 cursor-pointer rounded-full"><BiX className="size-8" /></button>
         </div>
       </div>
-      <AnimatePresence>
-        {showToast && <ToastNotification />}
-      </AnimatePresence>
-
+     
     </div>
   )
 }

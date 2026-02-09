@@ -3,7 +3,10 @@ import { JobData } from "../../constants/JobData"
 import Button from "../Button"
 import { AnimatePresence, motion } from "motion/react"
 import JobDetailsModal from "../JobDetailsModal"
-export default function JobCard() {
+interface Props{
+    handleshowToast:()=>void
+}
+export default function JobCard({handleshowToast}:Props) {
     const [hoveredId, setHoveredId] = useState<number | null>(null)
     const [selectedJob, setSelectedJob] = useState<number | null>(null);
 
@@ -62,7 +65,7 @@ export default function JobCard() {
                     </AnimatePresence>
 
                     {selectedJob === index &&
-                        <JobDetailsModal job={job} setSelectedJob={setSelectedJob} />
+                        <JobDetailsModal job={job} handleshowToast={handleshowToast} setSelectedJob={setSelectedJob} />
                     }
 
                 </div>
