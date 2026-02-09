@@ -4,7 +4,7 @@ import SearchInput from "../SearchInput"
 import { useState } from "react"
 import ToastNotification from "../ToastNotification"
 export default function JobPage() {
-  const [showToast, setShowToast] = useState(false)
+  const [showToast, setShowToast] = useState<boolean>(false)
   const handleshowToast = () => {
     setShowToast(true)
     setTimeout(() => setShowToast(false), 4000)
@@ -17,7 +17,6 @@ export default function JobPage() {
       <AnimatePresence>
         {showToast && <ToastNotification />}
       </AnimatePresence>
-
     </div>
   )
 }
