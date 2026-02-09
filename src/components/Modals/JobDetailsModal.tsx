@@ -1,20 +1,21 @@
-import type { JobDataType } from "../constants/JobData"
-import Button from "./Button"
+import type { JobDataType } from "../../constants/JobData"
+import Button from "../Button/Button"
 import { BiCalendarExclamation, BiX } from "react-icons/bi"
-import useOutsideClick from "../hooks/useOutsideClick"
+import useOutsideClick from "../../hooks/useOutsideClick"
 import { useRef } from "react"
-export default function JobDetailsModal({ job, setSelectedJob,handleshowToast }: {
+interface Props {
   job: JobDataType
   setSelectedJob: (index: number | null) => void
-  handleshowToast:()=>void
-}) {
+  handleshowToast: () => void
+}
+export default function JobDetailsModal({ job, setSelectedJob, handleshowToast }: Props) {
   const handleCloseModal = () => {
     setSelectedJob(null)
   }
   const modalRef = useRef(null)
   const buttonRef = useRef(null)
   useOutsideClick({ ref: modalRef, handler: handleCloseModal, buttonRef: buttonRef })
- 
+
   return (
     <div className="fixed inset-0 w-full bg-black/60 z-50 flex items-center justify-center cursor-default">
       <div
@@ -23,7 +24,7 @@ export default function JobDetailsModal({ job, setSelectedJob,handleshowToast }:
 
         <div className="flex items-center gap-4">
           <h1 className="font-semibold text-xl underline underline-offset-6 decoration-gray-400 decoration-1">&bull; {job.jobTitle}</h1>
-          
+
           <h1 className="flex items-center gap-1"><BiCalendarExclamation /> ({job.lastDate})</h1>
         </div>
 
@@ -39,10 +40,10 @@ export default function JobDetailsModal({ job, setSelectedJob,handleshowToast }:
 
         <div>
           <div className="flex items-center gap-1">
-              <h1 className="text-[17px] font-medium">Job Description:</h1>
-          <h1>({job.jobType})</h1>
+            <h1 className="text-[17px] font-medium">Job Description:</h1>
+            <h1>({job.jobType})</h1>
           </div>
-        
+
           <p
             style={{ lineHeight: "120%" }}
             className="mt-1  text-gray-800 text-[15px]">{job.jobDescription}</p>
@@ -61,10 +62,12 @@ export default function JobDetailsModal({ job, setSelectedJob,handleshowToast }:
 
         <div>
           <h1 className="text-[17px] font-medium">Skills:</h1>
-          <div
-            className="mt-1 text-gray-800 flex flex-wrap gap-4">{job.requiredSkills.map((skill, index) =>
-              <h1 key={index} className="text-[15px]">&bull; {skill}</h1>
-            )}</div>
+          <div>
+            <ol className="list-disc pl-4 gap-8 mt-1 flex flex-wrap text-gray-800">
+              {job.requiredSkills.map((skill, index) =>
+                <li key={index} className="text-[15px]">{skill}</li>
+              )}
+            </ol></div>
         </div>
         <div className="w-full bg-gray-600 h-px" />
         <div className="flex items-center justify-between gap-2">
@@ -75,7 +78,7 @@ export default function JobDetailsModal({ job, setSelectedJob,handleshowToast }:
           </div>
           <div>
             <Button
-              handleClick={()=>handleshowToast()}
+              handleClick={() => handleshowToast()}
               className="bg-blue-600 hover:bg-blue-500 border border-blue-700" title="Apply" />
           </div>
         </div>
@@ -86,7 +89,7 @@ export default function JobDetailsModal({ job, setSelectedJob,handleshowToast }:
             className="border border-gray-600 cursor-pointer rounded-full"><BiX className="size-8" /></button>
         </div>
       </div>
-     
+
     </div>
   )
 }

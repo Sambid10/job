@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { JobData } from "../../constants/JobData"
-import Button from "../Button"
+import Button from "../Button/Button"
 import { AnimatePresence, motion } from "motion/react"
-import JobDetailsModal from "../JobDetailsModal"
+import JobDetailsModal from "../Modals/JobDetailsModal"
 interface Props{
     handleshowToast:()=>void
 }
