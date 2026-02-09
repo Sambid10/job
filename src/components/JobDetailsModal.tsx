@@ -1,13 +1,23 @@
 import type { JobDataType } from "../constants/JobData"
 import Button from "./Button"
 import { BiCalendarExclamation, BiX } from "react-icons/bi"
-
-export default function JobDetailsModal({ job }: {
+import useOutsideClick from "../hooks/useOutsideClick"
+import { useRef } from "react"
+export default function JobDetailsModal({ job,setSelectedJob }: {
   job: JobDataType
+  setSelectedJob:(index:number | null)=>void
 }) {
+  const handleCloseModal =() => {
+    setSelectedJob(null )
+  }
+  const modalRef=useRef(null)
+  const buttonRef=useRef(null)
+  useOutsideClick({ref:modalRef,handler:handleCloseModal,buttonRef:buttonRef})
   return (
     <div className="fixed inset-0 w-full bg-black/60 z-50 flex items-center justify-center cursor-default">
-      <div className="relative bg-gray-50 rounded-md h-fit w-[90%] lg:w-[50%] p-6 flex flex-col gap-5">
+      <div 
+      ref={modalRef}
+      className="relative bg-gray-50 rounded-md h-fit w-[90%] lg:w-[50%] p-6 flex flex-col gap-5">
 
         <div className="flex items-center gap-4">
           <h1 className="font-semibold text-xl underline underline-offset-6 decoration-gray-400 decoration-1">&bull; {job.jobTitle}</h1>
@@ -62,7 +72,9 @@ export default function JobDetailsModal({ job }: {
         </div>
 
         <div className="absolute top-6 right-4">
-          <button className="border border-gray-600 cursor-pointer rounded-full"><BiX className="size-6"/></button>
+          <button 
+          ref={buttonRef}
+          className="border border-gray-600 cursor-pointer rounded-full"><BiX className="size-8" /></button>
         </div>
       </div>
 

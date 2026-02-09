@@ -6,6 +6,7 @@ import JobDetailsModal from "../JobDetailsModal"
 export default function JobCard() {
     const [hoveredId, setHoveredId] = useState<number | null>(null)
     const [selectedJob, setSelectedJob] = useState<number | null>(null);
+
     return (
         <div
             className="grid max-w-md md:max-w-none mx-auto md:mx-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -59,11 +60,11 @@ export default function JobCard() {
                             />
                         )}
                     </AnimatePresence>
-                    <AnimatePresence>
-                        {selectedJob === index &&
-                            <JobDetailsModal job={job} />
-                        }
-                    </AnimatePresence>
+
+                    {selectedJob === index &&
+                        <JobDetailsModal job={job} setSelectedJob={setSelectedJob} />
+                    }
+
                 </div>
 
             )}
